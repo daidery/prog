@@ -36,7 +36,7 @@ namespace арифметика
 
             Console.WriteLine();
             Console.WriteLine("Введите значение угла в градусах");
-            angleInDegrees =  double.Parse(Console.ReadLine());
+            angleInDegrees = double.Parse(Console.ReadLine());
             angleInRadians = angleInDegrees * Math.PI / 180;
             sin = Math.Sin(angleInRadians);
             cos = Math.Cos(angleInRadians);
