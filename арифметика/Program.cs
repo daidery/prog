@@ -17,8 +17,8 @@ namespace арифметика
 
             Console.WriteLine();
             Console.WriteLine("Введите значение угла в градусах");
+            angleInDegrees = double.Parse(Console.ReadLine());
             PrintSinusCosinus(angleInDegrees);
-
 
             Console.ReadKey();
         }
@@ -29,8 +29,8 @@ namespace арифметика
             double sin = Math.Sin(angleInRadians);
             double cos = Math.Cos(angleInRadians);
 
-            Console.WriteLine("sin(15°) = " + Math.Round(sin, 3));
-            Console.WriteLine("cos(15°) = " + Math.Round(cos, 3));
+            Console.WriteLine("sin(" + angleInDegrees + "°) = " + Math.Round(sin, 3));
+            Console.WriteLine("cos(" + angleInDegrees + "°) = " + Math.Round(cos, 3));
         }
     }
 }
