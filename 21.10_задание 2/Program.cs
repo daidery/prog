@@ -27,7 +27,7 @@ namespace _21._10_задание_2
 
         static bool IsPointInArea(double x, double y)
         {
-            return x<=2 && (0.5 <= y || y <= 1.5) || x >= 2;
+            return x<=2 && (0.5 <= y && y <= 1.5) || x >= 2;
         }
     }
 }
