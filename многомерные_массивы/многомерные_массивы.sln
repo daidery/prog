@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "многомерные_массивы", "многомерные_массивы.csproj", "{55132742-FE6A-49EB-809C-CB76CF30CAA1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55132742-FE6A-49EB-809C-CB76CF30CAA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55132742-FE6A-49EB-809C-CB76CF30CAA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55132742-FE6A-49EB-809C-CB76CF30CAA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55132742-FE6A-49EB-809C-CB76CF30CAA1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A4BB288-F32F-4501-AF6F-3D5A1BE7F9EB}
+	EndGlobalSection
+EndGlobal
