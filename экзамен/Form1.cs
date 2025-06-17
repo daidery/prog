@@ -13,7 +13,7 @@ namespace экзамен
 {
     public partial class Form1 : Form
     {
-        private double _currentValue = 0;
+        private decimal _currentValue = 0;
         private List<string> _expressionParts = new List<string>();
         private bool _isNewInput = true;
         private bool _isDecimalEntered = false;
@@ -83,7 +83,7 @@ namespace экзамен
 
             Button button = (Button)sender;
             string newOperation = button.Text;
-            
+
             // Если есть сохраненный результат и начат новый ввод
             if (_isNewInput && _expressionParts.Count == 1 && !_operationJustEntered)
             {
@@ -167,8 +167,7 @@ namespace экзамен
             _shouldResetOnNextInput = true; // Устанавливаем флаг, что следующий ввод цифры должен сбросить
         }
 
-
-        private double EvaluateExpression()
+        private decimal EvaluateExpression()
         {
             // Сначала обрабатываем умножение и деление
             List<string> processedParts = new List<string>(_expressionParts);
@@ -178,15 +177,15 @@ namespace экзамен
                 string op = processedParts[i];
                 if (op == "×" || op == "÷")
                 {
-                    double left = double.Parse(processedParts[i - 1], _culture);
-                    double right = double.Parse(processedParts[i + 1], _culture);
-                    double result = 0;
+                    decimal left = decimal.Parse(processedParts[i - 1], _culture);
+                    decimal right = decimal.Parse(processedParts[i + 1], _culture);
+                    decimal result = 0;
 
                     if (op == "×")
                         result = left * right;
                     else if (op == "÷")
                     {
-                        if (Math.Abs(right) < double.Epsilon)
+                        if (right == 0)
                             throw new DivideByZeroException("Деление на ноль невозможно!");
                         result = left / right;
                     }
@@ -199,12 +198,12 @@ namespace экзамен
             }
 
             // Затем обрабатываем сложение и вычитание
-            double total = double.Parse(processedParts[0], _culture);
+            decimal total = decimal.Parse(processedParts[0], _culture);
 
             for (int i = 1; i < processedParts.Count; i += 2)
             {
                 string op = processedParts[i];
-                double num = double.Parse(processedParts[i + 1], _culture);
+                decimal num = decimal.Parse(processedParts[i + 1], _culture);
 
                 if (op == "+")
                     total += num;
@@ -284,13 +283,13 @@ namespace экзамен
         private void DisplayCurrentValue()
         {
             string formatted;
-            if (_currentValue == Math.Floor(_currentValue) && Math.Abs(_currentValue) < 1e16)
+            if (_currentValue == decimal.Floor(_currentValue) && Math.Abs(_currentValue) < 1e16m)
             {
                 formatted = _currentValue.ToString("0", _culture);
             }
             else
             {
-                formatted = _currentValue.ToString("G15", _culture);
+                formatted = _currentValue.ToString("G29", _culture); // G29 - оптимальный формат для decimal
             }
             txtDisplay.Text = formatted.Replace(",", ".");
         }
