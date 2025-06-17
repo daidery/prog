@@ -101,7 +101,7 @@ namespace экзамен
                 if (_isNewInput || _operationJustEntered)
                 {
                     _isNegativeInput = true;
-                    txtDisplay.Text = "-0";
+                    txtDisplay.Text = "-";
                     _isNewInput = false;
                     _operationJustEntered = false;
                     return;
@@ -164,12 +164,11 @@ namespace экзамен
             _isNewInput = true;
             _isDecimalEntered = false;
             _operationJustEntered = false;
-            _shouldResetOnNextInput = true; // Устанавливаем флаг, что следующий ввод цифры должен сбросить
+            _shouldResetOnNextInput = true;
         }
 
         private decimal EvaluateExpression()
         {
-            // Сначала обрабатываем умножение и деление
             List<string> processedParts = new List<string>(_expressionParts);
 
             for (int i = 1; i < processedParts.Count; i += 2)
@@ -197,7 +196,6 @@ namespace экзамен
                 }
             }
 
-            // Затем обрабатываем сложение и вычитание
             decimal total = decimal.Parse(processedParts[0], _culture);
 
             for (int i = 1; i < processedParts.Count; i += 2)
@@ -289,7 +287,7 @@ namespace экзамен
             }
             else
             {
-                formatted = _currentValue.ToString("G29", _culture); // G29 - оптимальный формат для decimal
+                formatted = _currentValue.ToString("G29", _culture);
             }
             txtDisplay.Text = formatted.Replace(",", ".");
         }
