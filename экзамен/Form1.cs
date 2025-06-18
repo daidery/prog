@@ -220,6 +220,18 @@ namespace экзамен
         private void btnDecimal_Click(object sender, EventArgs e)
         {
             _operationJustEntered = false;
+
+            // Если нужно сбросить (после равно и нажатия точки)
+            if (_shouldResetOnNextInput)
+            {
+                ResetCalculator();
+                txtDisplay.Text = "0.";
+                _isNewInput = false;
+                _isDecimalEntered = true;
+                _shouldResetOnNextInput = false;
+                return;
+            }
+
             // Если есть сохраненный результат и начат новый ввод
             if (_isNewInput && _expressionParts.Count == 1)
             {
@@ -231,6 +243,7 @@ namespace экзамен
                 _expressionParts.Clear();
                 return;
             }
+
             if (_isNewInput)
             {
                 txtDisplay.Text = _isNegativeInput ? "-0." : "0.";
