@@ -272,7 +272,15 @@ namespace экзамен
 
         private void btnBackspace_Click(object sender, EventArgs e)
         {
-            _operationJustEntered = false;
+            // Если только что была введена операция (и сейчас новый ввод)
+            if (_operationJustEntered)
+            {
+                RemoveLastOperationFromHistory();
+                _isNewInput = true; // Остаемся в режиме нового ввода
+                return;
+            }
+
+            // Обычная обработка Backspace для цифр и точки
             if (!_isNewInput && txtDisplay.Text.Length > 0)
             {
                 if (txtDisplay.Text.EndsWith("."))
@@ -289,6 +297,16 @@ namespace экзамен
                     _isNegativeInput = false;
                 }
             }
+            // Если в режиме нового ввода и есть сохраненные операции
+            else if (_isNewInput && _expressionParts.Count > 0)
+            {
+                // Проверяем, является ли последний элемент операцией
+                string lastElement = _expressionParts.Last();
+                if (lastElement == "+" || lastElement == "-" || lastElement == "×" || lastElement == "÷")
+                {
+                    RemoveLastOperationFromHistory();
+                }
+            }
         }
 
         private void DisplayCurrentValue()
@@ -303,6 +321,17 @@ namespace экзамен
                 formatted = _currentValue.ToString("G29", _culture);
             }
             txtDisplay.Text = formatted.Replace(",", ".");
+        }
+
+        private void RemoveLastOperationFromHistory()
+        {
+            if (_expressionParts.Count > 0)
+            {
+                // Удаляем последнюю операцию из истории
+                _expressionParts.RemoveAt(_expressionParts.Count - 1);
+                UpdateHistoryLabel();
+                _operationJustEntered = false;
+            }
         }
 
         private void ShowError(string message)
